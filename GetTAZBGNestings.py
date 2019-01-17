@@ -79,7 +79,7 @@ base_path = os.path.split(__file__)[0]
 output_path = os.path.join(base_path, 'TAZ_BG_Nestings_Output_' + start_time.strftime('%y%m%d%H%M%S'))
 os.mkdir(output_path)
 
-infile = os.path.join(base_path, 'Blk_BG_TAZ_Lookup.csv')
+infile = os.path.join(base_path, 'Blk_BG_TAZ_Lookup_SampleInput.csv')
 taz2bg_file = os.path.join(output_path, 'taz2bg.csv')
 bg2taz_file = os.path.join(output_path, 'bg2taz.csv')
 
