@@ -222,48 +222,48 @@ max_bgs = nestings['n_bgs'].max()
 taz2nesting = pd.DataFrame(taz2nesting)
 taz2nesting['nesting_id'] = taz2nesting[0]
 del taz2nesting[0]
-taz2nesting.index.name = 'taz'
+taz2nesting.index.name = 'taz_id'
 
 taz2nesting = taz2nesting.reset_index()
-taz2nesting['pop'] = taz2nesting['taz'].map(taz_pops)
-taz2nesting['nesting type'] = taz2nesting['nesting_id'].map(nestings['type'])
-taz2nesting['pop class'] = taz2nesting['pop'].apply(classify_pop)
-taz2nesting = taz2nesting.set_index('taz')
+taz2nesting['pop'] = taz2nesting['taz_id'].map(taz_pops)
+taz2nesting['nest_type'] = taz2nesting['nesting_id'].map(nestings['type'])
+taz2nesting['pop_class'] = taz2nesting['pop'].apply(classify_pop)
+taz2nesting = taz2nesting.set_index('taz_id')
 
 for taz in zero_pop_tazs:
     taz2nesting.loc[taz] = [np.nan, 0, 'No Population', '0']
 
 for i in range(max_bgs):
-    taz2nesting['Block Group %s'%(i+1)] = np.nan
+    taz2nesting['blkgrp_%s'%(i+1)] = np.nan
 
 for taz in taz2nesting.index:
     taz_nesting = taz2nesting.loc[taz, 'nesting_id']
     bgs_in_taz = list(bg2nesting[bg2nesting == taz_nesting].index)
     bgs_in_taz += (max_bgs - len(bgs_in_taz))*[np.nan]
-    taz2nesting.loc[taz, ['Block Group %s'%(i+1) for i in range(max_bgs)]] = bgs_in_taz
+    taz2nesting.loc[taz, ['blkgrp_%s'%(i+1) for i in range(max_bgs)]] = bgs_in_taz
 
 bg2nesting = pd.DataFrame(bg2nesting)
 bg2nesting['nesting_id'] = bg2nesting[0]
 del bg2nesting[0]
-bg2nesting.index.name = 'block group'
+bg2nesting.index.name = 'blkgrp_id'
 
 bg2nesting = bg2nesting.reset_index()
-bg2nesting['pop'] = bg2nesting['block group'].map(bg_pops)
-bg2nesting['nesting type'] = bg2nesting['nesting_id'].map(nestings['type'])
-bg2nesting['pop class'] = bg2nesting['pop'].apply(classify_pop)
-bg2nesting = bg2nesting.set_index('block group')
+bg2nesting['pop'] = bg2nesting['blkgrp_id'].map(bg_pops)
+bg2nesting['nest_type'] = bg2nesting['nesting_id'].map(nestings['type'])
+bg2nesting['pop_class'] = bg2nesting['pop'].apply(classify_pop)
+bg2nesting = bg2nesting.set_index('blkgrp_id')
 
 for bg in zero_pop_bgs:
     bg2nesting.loc[bg] = [np.nan, 0, 'No Population', '0']
 
 for i in range(max_tazs):
-    bg2nesting['TAZ %s'%(i+1)] = np.nan
+    bg2nesting['TAZ_%s'%(i+1)] = np.nan
 
 for bg in bg2nesting.index:
     bg_nesting = bg2nesting.loc[bg, 'nesting_id']
     tazs_in_bg = list(taz2nesting[taz2nesting['nesting_id'] == bg_nesting].index)
     tazs_in_bg += (max_tazs - len(tazs_in_bg))*[np.nan]
-    bg2nesting.loc[bg, ['TAZ %s'%(i+1) for i in range(max_tazs)]] = tazs_in_bg
+    bg2nesting.loc[bg, ['TAZ_%s'%(i+1) for i in range(max_tazs)]] = tazs_in_bg
 
 del taz2nesting['nesting_id']
 del bg2nesting['nesting_id']
