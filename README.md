@@ -7,11 +7,11 @@ The Python script located here in GitHub is available for people who wish to mod
 The Executable file was designed for non-coders who want to open the file and simply upload an input CSV with your local blocks to get the two outputs. The file, instructions on using it, and a sample input are located here: https://drive.google.com/open?id=1sMZxn-9352uUV1Bc3Ys7_PzJ9e-OLn5L
 
 It’s important to note that this is a tabular procedure, rather than a GIS function--as boundaries for block groups and TAZs do not often have exact matches, but the populations they contain can be exactly the same nonetheless. Block groups and tracts are comprised of the same smaller geographic components: census blocks. A sample input file is provided containing block IDs assigned to their respective block group and TAZ IDs. Population (here 2010 pop is used) allows for the procedures to classify the block groups and TAZs by what kind of relationship they have with each other. The following are the categories found in the “nest_type” field:
-One TAZ = One Block Group
-One TAZ = Many Block Groups
-Many TAZs = One Block Group
-Many TAZs = Many Block Groups
-No Population
+[One TAZ = One Block Group]
+[One TAZ = Many Block Groups]
+[Many TAZs = One Block Group]
+[Many TAZs = Many Block Groups]
+[No Population]
 
 There are two output CSVs that result from the procedure:
 bg2taz.csv - a table that’s joinable to a block group shapefile or other table of block groups that can classify the data into the relationships above
