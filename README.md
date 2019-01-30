@@ -19,7 +19,7 @@ taz2bg.csv - a table that’s joinable to a TAZ shapefile or other table of TAZs
 
 Beyond the relationship classifications, these tables will sum the population of each record (“pop” field) and indicate in the “pop_class” field whether that population is 
 Above [<600], 
-Below [>3000],, 
+Below [>3000], 
 or within [600-3000]
 the population thresholds for standard block groups in the 2020 PSAP criteria. 
 
